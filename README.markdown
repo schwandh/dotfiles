@@ -20,7 +20,9 @@ If you're interested in the philosophy behind why projects like these are awesom
 - `cd ~/.dotfiles`
 - `rake install`
 
-The install rake task will symlink the appropriate files in `.dotfiles` to your home directory. Everything is configured and tweaked within `~/.dotfiles`, though.
+The install rake task will symlink the appropriate files in `.dotfiles` to your
+home directory. Everything is configured and tweaked within `~/.dotfiles`,
+though.
 
 The main file you'll want to change right off the bat is `bash/bashrc.symlink`, which sets up a few paths that'll be different on your particular machine.
 
@@ -35,18 +37,27 @@ Everything's built around topic areas. If you're adding a new area to your forke
 A lot of what's inside is just aliases: `gs` for `git status`, `gl` for `git pull --rebase --prune`, for example. You can browse the `aliases.bash` files in each topic directory. There's also a collection of scripts in `bin` you can browse. A few notable ones:
 
 ###rails
-- `s` pings your system for any running Rails apps, and `deathss` will then kill all of them indiscriminately. `ss` starts up a new Rails server on the next available port- if 3000 is taken, it'll spin up your server on 3001.
+- `s` pings your system for any running Rails apps, and `deathss` will then
+  kill all of them indiscriminately. `ss` starts up a new Rails server on the
+  next available port- if 3000 is taken, it'll spin up your server on 3001.
 
 ###system
-- `c` is an autocomplete shortcut to your projects directory. For example, `c git` and then hitting tab will autocomplete to `github`, and then it simply changes to my `github` directory.
-- `check [filename]` is a quick script that tells you whether a domain is available to register.
-- `smartextract [filename]` will extract about a billion different compressed/uncompressed/whatever files.
+- `c` is an autocomplete shortcut to your projects directory. For example, `c
+  git` and then hitting tab will autocomplete to `github`, and then it simply
+  changes to my `github` directory.
+- `check [filename]` is a quick script that tells you whether a domain is
+  available to register.
+- `smartextract [filename]` will extract about a billion different
+  compressed/uncompressed/whatever files.
 
 ##moar custom
-There are a few things I use to make my life awesome. They're not a required dependency, but if you make it happen, THEY'LL MAKE **YOU** HAPPEN.
+There are a few things I use to make my life awesome. They're not a required
+dependency, but if you make it happen, THEY'LL MAKE **YOU** HAPPEN.
 
-- If you want some more colors for things like `ls`, install grc: `brew install grc`.
-- If you install the excellent [rvm](http://rvm.beginrescueend.com) to manage multiple rubies, your current branch will show up in the prompt. Bonus.
+- If you want some more colors for things like `ls`, install grc: `brew install
+  grc`.
+- If you install the excellent [rvm](http://rvm.beginrescueend.com) to manage
+  multiple rubies, your current branch will show up in the prompt. Bonus.
 
 ## thanks
 This is based off of [@holman's](http://github.com/holman/) wonderful [dotfiles](http://github.com/holman/dotfiles) which are ZSH based. I have modified them to be BASH based.
