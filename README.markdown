@@ -1,4 +1,7 @@
-# holman does dotfiles
+# wmernagh does dotfiles
+
+# gem install hirb
+# ln -s <DEV_REPO> ~/Development
 
 ## dotfiles
 
