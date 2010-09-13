@@ -1,38 +1,36 @@
 # cheers, @ehrenmurdick
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
-
 git_branch() {
   echo $(git symbolic-ref HEAD 2>/dev/null | awk -F/ {'print $NF'})
 }
 
 git_dirty() {
-  st=$(git status 2>/dev/null | tail -n 1)
+  st=$(git st 2>/dev/null | tail -n 1)
   if [[ $st == "" ]]
   then
-    echo ""
+echo " "
   else
-    if [[ $st == "nothing to commit (working directory clean)" ]]
+if [[ $st == "nothing to commit (working directory clean)" ]]
     then
-      echo "%{\033[m%}$(git_prompt_info)%{\033[0m%}"
+echo " "
     else
-      echo "%{\033[31m%}$(git_prompt_info)%{\033[0m%}"
+echo "*"
     fi
-  fi
+fi
 }
 
 git_prompt_info () {
  ref=$(git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
- echo "${ref#refs/heads/}"
+echo "(%{\e[0;35m%}${ref#refs/heads/}%{\e[0m%})"
 }
 
 project_name () {
-  name=$(pwd | awk -F'Development/' '{print $2}' | awk -F/ '{print $1}')
+  name=$(pwd | awk -F'projects/' '{print $2}' | awk -F/ '{print $1}')
   echo $name
 }
 
 project_name_color () {
-#  name=$(project_name)
+  name=$(project_name)
   echo "%{\e[0;35m%}${name}%{\e[0m%}"
 }
 
@@ -43,17 +41,27 @@ unpushed () {
 need_push () {
   if [[ $(unpushed) == "" ]]
   then
-    echo " "
+echo " "
   else
-    echo "%{\e[1;36m%} + %{\e[0m%}"
+echo "%{\e[0;33m%}$%{\e[0m%}"
   fi
 }
 
-export PROMPT=$'%{\e[0;36m%}%1/%{\e[0m%} › '
+export PROMPT=$'%{\e[0;36m%}%1/%{\e[0m%}/ '
 set_prompt () {
-  export RPROMPT="$(need_push)$(project_name_color)$(git_dirty)"
+  export RPROMPT="$(git_prompt_info)$(git_dirty)$(need_push)"
+}
+
+set_iterm_title() {
+  echo -ne "\e]2;$(pwd)\a"
+}
+
+set_iterm_tab() {
+  echo -ne "\e]1;$(project_name)\a"
 }
 
 precmd() {
   set_prompt
+  set_iterm_title
+  set_iterm_tab
 }
