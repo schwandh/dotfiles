@@ -5,32 +5,31 @@ git_branch() {
 }
 
 git_dirty() {
-  st=$(git st 2>/dev/null | tail -n 1)
+  st=$(git status 2>/dev/null | tail -n 1)
   if [[ $st == "" ]]
   then
-echo " "
+    echo " "
   else
-if [[ $st == "nothing to commit (working directory clean)" ]]
+    if [[ $st == "nothing to commit (working directory clean)" ]]
     then
-echo " "
+      echo "%{\033[m%}$(git_prompt_info)%{\033[0m%}"
     else
-echo "*"
+      echo "%{\033[31m%}$(git_prompt_info)%{\033[0m%}"
     fi
-fi
+  fi
 }
 
 git_prompt_info () {
- ref=$(git symbolic-ref HEAD 2>/dev/null) || return
-echo "(%{\e[0;35m%}${ref#refs/heads/}%{\e[0m%})"
+  ref=$(git symbolic-ref HEAD 2>/dev/null) || return
+  echo "${ref#refs/heads/}"
 }
 
 project_name () {
-  name=$(pwd | awk -F'projects/' '{print $2}' | awk -F/ '{print $1}')
+  name=$(pwd | awk -F'Development/' '{print $2}' | awk -F/ '{print $1}')
   echo $name
 }
 
 project_name_color () {
-  name=$(project_name)
   echo "%{\e[0;35m%}${name}%{\e[0m%}"
 }
 
@@ -43,13 +42,13 @@ need_push () {
   then
 echo " "
   else
-echo "%{\e[0;33m%}$%{\e[0m%}"
+    echo "%{\e[1;36m%} + %{\e[0m%}"
   fi
 }
 
-export PROMPT=$'%{\e[0;36m%}%1/%{\e[0m%}/ '
+export PROMPT=$'%{\e[0;36m%}%1/%{\e[0m%}> '
 set_prompt () {
-  export RPROMPT="$(git_prompt_info)$(git_dirty)$(need_push)"
+  export RPROMPT="$(need_push)$(project_name_color)$(git_dirty)"
 }
 
 set_iterm_title() {
