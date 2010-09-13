@@ -1,0 +1,6 @@
+[submodule "vim/vim-rails"]
+	path = vim/vim-rails
+	url = https://wmernagh@github.com/wmernagh/vim-rails.git
+[submodule "vim/snipmate.vim"]
+	path = vim/snipmate.vim
+	url = https://wmernagh@github.com/wmernagh/snipmate.vim.git

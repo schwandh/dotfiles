@@ -1,5 +1,7 @@
 require 'rake'
 
+rails_vim_files = ['autoload/rails.vim', 'plugin/rails.vim', 'doc/rails.txt']
+
 desc "Hook our dotfiles into system-standard positions."
 task :install do
   linkables = Dir.glob('*/**{.symlink}')
@@ -32,4 +34,27 @@ task :install do
     `ln -s "$PWD/#{linkable}" "#{target}"`
   end
 end
+
+desc "Link vim-rails"
+task :viminstall do
+  vimfiles = if ENV['VIMFILES']
+               ENV['VIMFILES']
+             elsif RUBY_PLATFORM =~ /(win|w)32$/
+               File.expand_path("~/vimfiles")
+             else
+               File.expand_path("~/.vim")
+             end
+
+  puts "Installing rails.vim"
+  rails_vim_files.each do |file|
+    target_file = File.join(vimfiles, file)
+    FileUtils.mkdir_p(File.dirname(target_file))
+    `mv "#{target_file}" "#{target_file}.backup"`
+    `ln -s "$PWD/vim/vim-rails/#{file}" "#{target_file}"`
+    puts "  Linked to vim/vim-rails/#{file} from #{target_file}"
+  end
+  `cp -R "$PWD/vim/snipmate.vim/*" "~/.vim/"`
+  puts "  Copied vim/vsnipmate.vim/* to ~/.vim/"
+end
+
 task :default => 'install'
