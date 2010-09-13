@@ -3,12 +3,12 @@
   wtf     = !$ZSH/bin/git-wtf
   rank-contributers = !$ZSH/bin/git-rank-contributers
   count   = !git shortlog -sn
-  diffwhatchanged = whatchanged lib/msel_prompter.rb|grep commit|colrm 1 7| xargs -I % git show % lib/msel_prompter.rb
+  lcrev = 'log --reverse --no-merges --stat @{1}..
   co = checkout
   spull = svn rebase
   spush = svn dcommit
   sfetch = svn fetch
-  unstage = reser HEAD --
+  unstage = reset HEAD --
   graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
 [color]
     ui = auto
@@ -26,12 +26,15 @@
   changed = green
   untracked = cyan
 [user]
-	name = Will Mernagh
+        name = Will Mernagh
 	email = TODO
 [github]
 	user = wmernagh
-	token = TODO
 [core]
         excludesfile = ~/.gitignore
 [apply]
         whitespace = nowarn
+[http]
+	sslverify = false
+	proxy = http://proxy-vf.global.lmco.com:80
+        postBuffer = 524288000
