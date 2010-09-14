@@ -4,6 +4,3 @@
 [submodule "vim/snipmate.vim"]
 	path = vim/snipmate.vim
 	url = https://wmernagh@github.com/wmernagh/snipmate.vim.git
-[submodule "git/git-flow-completion"]
-	path = git/git-flow-completion
-	url = https://wmernagh@github.com/wmernagh/git-flow-completion.git
