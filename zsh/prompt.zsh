@@ -52,7 +52,7 @@ set_prompt () {
 }
 
 set_iterm_title() {
-  echo -ne "\e]2;$(pwd)\a"
+  echo -ne "\e]2;$(hostname -s) | $(pwd)\a"
 }
 
 set_iterm_tab() {
