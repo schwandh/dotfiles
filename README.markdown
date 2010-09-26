@@ -48,7 +48,14 @@ A lot of what's inside is just aliases: `gs` for `git status`, `gl` for `git pul
 - `check [filename]` is a quick script that tells you whether a domain is
   available to register.
 - `smartextract [filename]` will extract about a billion different
-  compressed/uncompressed/whatever files.
+  compressed/uncompressed/whatever files and you'll never have to remember the
+  syntax.
+- `backup` is a quick hook into `rsync` to backup a selection of files. Check
+  out the comments for more details.
+
+###fun
+- `cloudapp` uploads any file to [CloudApp](http://getcloudapp.com).
+- `gifme` is a command-line animated GIF generator. It's also amazing.
 
 ##moar custom
 There are a few things I use to make my life awesome. They're not a required
