@@ -1,10 +1,10 @@
 [alias]
-  promote = !$ZSH/bin/git-promote
-  wtf     = !$ZSH/bin/git-wtf
-  rank-contributers = !$ZSH/bin/git-rank-contributers
+  promote = !$BASH/bin/git-promote
+  wtf     = !$BASH/bin/git-wtf
+  rank-contributers = !$BASH/bin/git-rank-contributers
   count   = !git shortlog -sn
-  lcrev = 'log --reverse --no-merges --stat @{1}..
-  co = checkout
+  lcrev = log --reverse --no-merges --stat @{1}..
+  co = checkout	
   spull = svn rebase
   spush = svn dcommit
   sfetch = svn fetch
@@ -26,15 +26,15 @@
   changed = green
   untracked = cyan
 [user]
-        name = Will Mernagh
+	name = Will Mernagh
 	email = TODO
 [github]
 	user = wmernagh
 [core]
-        excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 [apply]
-        whitespace = nowarn
+	whitespace = nowarn
 [http]
 	sslverify = false
 	proxy = http://proxy-vf.global.lmco.com:80
-        postBuffer = 524288000
+	postBuffer = 524288000
