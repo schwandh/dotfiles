@@ -24,18 +24,6 @@ The install rake task will symlink the appropriate files in `.dotfiles` to your
 home directory. Everything is configured and tweaked within `~/.dotfiles`,
 though.
 
-The main file you'll want to change right off the bat is `bash/bashrc.symlink`, which sets up a few paths that'll be different on your particular machine.
-
-Also you should probably fork this repo and install your own version on your machine though. That way as you customize it for your liking you can keep track of it and make it easier to install onto numerous machines
-
-## topical
-
-Everything's built around topic areas. If you're adding a new area to your forked dotfiles — say, "Java" — you can simply add a `java` directory and put files in there. Anything with an extension of `.bash` will get automatically included into your shell. Anything with an extension of `.symlink` will get symlinked without extension into `$HOME` when you run `rake install`.
-
-## what's inside
-
-A lot of what's inside is just aliases: `gs` for `git status`, `gl` for `git pull --rebase --prune`, for example. You can browse the `aliases.bash` files in each topic directory. There's also a collection of scripts in `bin` you can browse. A few notable ones:
-
 ###rails
 - `s` pings your system for any running Rails apps, and `deathss` will then
   kill all of them indiscriminately. `ss` starts up a new Rails server on the
