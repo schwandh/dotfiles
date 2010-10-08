@@ -1,3 +1,17 @@
+###############################################################################
+# Set the TERM title
+###############################################################################
+function nameTerminal() {
+    [ "${TERM:0:5}"  = "xterm" ]   && local ansiNrTab=0
+    [ "$TERM"        = "rxvt" ]    && local ansiNrTab=61
+    [ "$TERM"        = "konsole" ] && local ansiNrTab=30 ansiNrWindow=0
+    [[ "$KONSOLE_DCOP" == *konsole* ]] && local ansiNrTab=30 ansiNrWindow=0
+        # Change tab title
+    [ $ansiNrTab ] && echo -n $'\[\e'"]$ansiNrTab;$1"$'\[\a'
+        # If terminal support separate window title, change window title as well
+    [ $ansiNrWindow -a "$2" ] && echo -n $'\[\e'"]$ansiNrWindow;$2"$'\[\a'
+} # nameTerminal()
+
 # cheers, @ehrenmurdick
 # http://github.com/ehrenmurdick/config/blob/master/zsh/prompt.zsh
 
@@ -95,18 +109,3 @@ get_prompt () {
 }
 
 PS1=$(get_prompt)
-
-###############################################################################
-# Set the TERM title
-###############################################################################
-function nameTerminal() {
-    [ "${TERM:0:5}"  = "xterm" ]   && local ansiNrTab=0
-    [ "$TERM"        = "rxvt" ]    && local ansiNrTab=61
-    [ "$TERM"        = "konsole" ] && local ansiNrTab=30 ansiNrWindow=0
-    [[ "$KONSOLE_DCOP" == *konsole* ]] && local ansiNrTab=30 ansiNrWindow=0
-        # Change tab title
-    [ $ansiNrTab ] && echo -n $'\e'"]$ansiNrTab;$1"$'\a'
-        # If terminal support separate window title, change window title as well
-    [ $ansiNrWindow -a "$2" ] && echo -n $'\e'"]$ansiNrWindow;$2"$'\a'
-} # nameTerminal()
-
