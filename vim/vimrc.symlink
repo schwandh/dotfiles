@@ -10,21 +10,20 @@ set softtabstop=2          " yep, two
 set shiftwidth=2           " ..
 set tabstop=4
 set expandtab              " expand tabs to spaces
-" set nosmarttab             " fuck tabs
 set formatoptions+=n       " support for numbered/bullet lists
-"set textwidth=80           " wrap at 80 chars by default
+set textwidth=80           " wrap at 80 chars by default
 set virtualedit=block      " allow virtual edit in visual block ..
+set pastetoggle=<F2>       " Hit <F2> to disable/enable autoindention for paste
 
 " ----------------------------------------------------------------------------
 "  Remapping
 " ----------------------------------------------------------------------------
 
 " lead with ,
-let mapleader = ","
+let mapleader = "," " ,<A_KEY> will map to the <leader> keys below
 
 " exit to normal mode with 'jj'
 inoremap jj <ESC>
-
 
 " reflow paragraph with Q in normal and visual mode
 nnoremap Q gqap
@@ -42,6 +41,15 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" map ???
+map <C-q> :mksession! ~/.vim/.session <cr>
+map <C-//> map ,# :s/^/#/<CR>
+map <S-//> :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR><Esc>:nohlsearch<CR>
+
+" F3 to toggle numbers
+noremap <silent> <F3> :set number!<CR>
+
+
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
@@ -50,14 +58,12 @@ set ruler                  " show the cursor position all the time
 set noshowcmd              " don't display incomplete commands
 set nolazyredraw           " turn off lazy redraw
 set number                 " line numbers
-set wildmenu               " turn on wild menu
-set wildmode=list:longest,full
-set ch=2                   " command line height
 set backspace=2            " allow backspacing over everything in insert mode
 set whichwrap+=<,>,h,l,[,] " backspace and cursor keys wrap to
 set shortmess=filtIoOA     " shorten messages
 set report=0               " tell us about changes
 set nostartofline          " don't jump to the start of line when scrolling
+set statusline=%<%f\ %h%m%r%=%-20.(line=%l,col=%c%V,totlin=%L%)\%h%m%r%=%-40(,%n%Y%)\%P
 
 
 " ----------------------------------------------------------------------------
@@ -69,9 +75,14 @@ set mat=5                  " duration to show matching brace (1/10 sec)
 set incsearch              " do incremental searching
 set laststatus=2           " always show the status line
 set ignorecase             " ignore case when searching
+set smartcase              "  - unless there is an uppercase letter
 set nohlsearch             " don't highlight searches
 set visualbell             " shut the fuck up
+syntax on                  " syntax highlighting
+colorscheme railscasts     " load the railscasts color scheme
 
+" Load matchit (% to bounce from do to end, etc.)
+runtime! macros/matchit.vim
 
 " ---------------------------------------------------------------------------
 "  Strip all trailing whitespace in file
@@ -83,85 +94,12 @@ endfunction
 map ,s :call StripWhitespace ()<CR>
 
 " ---------------------------------------------------------------------------
-" Need to comment the following
+" Misc.
 " ---------------------------------------------------------------------------
 
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,perl,tex set shiftwidth=2
- 
-autocmd FileType c,cpp,java,javascript,python,xml,xhtml,html set shiftwidth=2
- 
-augroup filetypedetect
-	au! BufNewFile,BufRead *.ch setf cheat
-	au BufNewFile,BufRead *.liquid setf liquid
-	au! BufRead,BufNewFile *.haml setfiletype haml
-	autocmd BufNewFile,BufRead *.yml setf eruby
-augroup END
- 
-autocmd BufNewFile,BufRead *_test.rb source ~/.vim/ftplugin/shoulda.vim
-"use \rci in normal mode to indent ruby code,should install kode ,sudo gem
-"install kode
-nmap <leader>rci :%!ruby-code-indenter<cr>
- 
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-" Load matchit (% to bounce from do to end, etc.)
-runtime! plugin/matchit.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set nocompatible          " We're running Vim, not Vi!
-"set guifont=Bitstream\ Vera\ Sans\ Mono\ 8
-"set guifont=Monaco:h10
-set guitablabel=%M%t
-set nobackup
-set nowritebackup
-set path=$PWD/public/**,$PWD/**
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
-set guioptions-=m
-set statusline=%<%f\ %h%m%r%=%-20.(line=%l,col=%c%V,totlin=%L%)\%h%m%r%=%-40(,%n%Y%)\%P
-set laststatus=2
-map <C-q> :mksession! ~/.vim/.session <cr>
-map <C-w> :tabclose<CR>
-map <C-//> map ,# :s/^/#/<CR>
-map <S-//> :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR><Esc>:nohlsearch<CR>
-nnoremap <silent> <C-o> :RTfind<CR>
-nnoremap <silent> <C-n> :tabnext<CR>
-nnoremap <silent> <C-p> :tabprevious<CR>
-nnoremap <silent> <C-t> :tabnew<CR>
-set showtabline=2
-set tabpagemax=15
-"imap <M-Up> :tabn<CR>
-"imap <M-Down> :tabp<CR>
-source $VIMRUNTIME/mswin.vim
-"so ~/.vim/plugin/supertab.vim
-imap <c-s> <esc><c-s>
-set guioptions-=T
-if has("gui_running")
-    set transparency=7
-    colorscheme candycode
-    "colorscheme lettuce
-    set lines=45
-    set columns=115
-    syntax on                 " Enable syntax highlighting
-    set noantialias
-else
-"    set term=ansi
-    syntax on
-endif
-
-" Load matchit (% to bounce from do to end, etc.)
-runtime! macros/matchit.vim
-set nonumber
 
 augroup myfiletypes
   " Clear old autocmds in group
@@ -169,29 +107,16 @@ augroup myfiletypes
   " autoindent with two spaces, always expand tabs
   autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
 augroup END
-let g:proj_flags="imstg"
-nmap <silent> <Leader>p :NERDTreeToggle<CR>
-map <leader>t :FuzzyFinderTextMate<CR>
-map <leader>b :FuzzyFinderBuffer<CR>
-map <leader>] :FuzzyFinderMruFile<CR>
-map <leader>b :FuzzyFinderBuffer<CR>
-map <leader> :FuzzyFinderBuffer<CR>
-map ,t :Rake<CR>
-let g:fuzzy_ceiling=20000
-let g:fuzzy_matching_limit=25
-"se cursorline
-set tw=80
-"colorscheme 256_vibrant_ink
-"colorscheme vividchalk
 
-"Export to XHTML
-:let html_number_lines = 0
-:let use_xhtml = 1
-:let html_use_css = 1
+" ---------------------------------------------------------------------------
+" Configure our tab behavior
+" ---------------------------------------------------------------------------
 
-" NEW
-set pastetoggle=<F2>
-"set mouse=a
-set incsearch
-set ignorecase
-set smartcase
+map <C-w> :tabclose<CR>
+nnoremap <silent> <C-o> :RTfind<CR>
+nnoremap <silent> <C-n> :tabnext<CR>
+nnoremap <silent> <C-p> :tabprevious<CR>
+nnoremap <silent> <C-t> :tabnew<CR>
+set showtabline=2
+set tabpagemax=15
+

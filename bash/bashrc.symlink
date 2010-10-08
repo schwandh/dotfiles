@@ -19,3 +19,6 @@ if [ -f ~/.localrc ]
 then
   source ~/.localrc
 fi
+
+# We want to use the full 256 colors in our terminals - it is not 1999
+export TERM=xterm-256color
