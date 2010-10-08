@@ -32,6 +32,7 @@
 	user = wmernagh
 [core]
 	excludesfile = ~/.gitignore
+    editor = vim
 [apply]
 	whitespace = nowarn
 [http]

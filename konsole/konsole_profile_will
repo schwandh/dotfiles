@@ -1,0 +1,42 @@
+[1]
+ActiveSession=0
+Args0=/bin/bash
+AutoResizeTabs=true
+Cwd0=$HOME
+DefaultSession=shell.desktop
+DynamicTabHide=false
+Encoding0=16
+EncodingName=ibm866
+Fullscreen=false
+Height 900=474
+History0=1000
+HistoryEnabled0=true
+Icon0=konsole
+KeyTab0=default
+MasterMode0=false
+MonitorActivity0=false
+MonitorSilence0=false
+Pgm0=/bin/bash
+Schema0=Will's.schema
+SessionFont0=Monospace,14,-1,5,50,0,0,0,0,0
+TabColor0=0,0,0
+TabViewMode=1
+Term0=xterm
+Title0=Shell
+Width 1440=662
+bellmode=1
+class=konsole-mainwindow#1
+defaultfont=Monospace,14,-1,5,50,0,0,0,0,0
+history=1000
+historyenabled=true
+keytab=default
+numSes=1
+schema=Will's.schema
+scrollbar=2
+tabbar=1
+
+[WindowProperties1]
+ClassName=Konsole
+Height 900=474
+ObjectName=konsole-mainwindow#1
+Width 1440=662

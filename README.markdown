@@ -10,7 +10,7 @@ Your dotfiles are how you personalize your system. These are mine.
 
 This is a mix of files for OS X & Linux, bash, Ruby, Rails, git, homebrew, TextMate, vim. If you match up along most of those lines, you may want to fork my dotfiles.
 
-This setup avoids long alias files and everything strewn about (which is extremely common in other dotfiles projects, too). That lead [@holman's](http://github.com/holman/) to create his [dotfiles](http://github.com/holman/dotfiles) project which is much more topic-centric. [@holman's](http://github.com/holman/) split a lot of things up into the main areas he used (Ruby, git, system libraries, and so on), and structured the project accordingly.
+This setup avoids long alias files and everything strewn about (which is extremely common in other dotfiles projects, too). That lead [@holman](http://github.com/holman/) to create his [dotfiles](http://github.com/holman/dotfiles) project which is much more topic-centric. [@holman](http://github.com/holman/) split a lot of things up into the main areas he used (Ruby, git, system libraries, and so on), and structured the project accordingly.
 
 If you're interested in the philosophy behind why projects like these are awesome, you might want to [read @holman's post on the subject](http://zachholman.com/2010/08/dotfiles-are-meant-to-be-forked/).
 
@@ -57,4 +57,4 @@ dependency, but if you make it happen, THEY'LL MAKE **YOU** HAPPEN.
 ## thanks
 This is based off of [@holman's](http://github.com/holman/) wonderful [dotfiles](http://github.com/holman/dotfiles) which are ZSH based. I have modified them to be BASH based.
 
-[@holman's](http://github.com/holman/) forked [Ryan Bates](http://github.com/ryanb)' excellent [dotfiles](http://github.com/ryanb/dotfiles) for a couple years before the weight of his changes and tweaks inspired him to finally roll his own. But Ryan's dotfiles were an easy way to get into bash customization, and then to jump ship to zsh a bit later. A decent amount of the code in these dotfiles stem or are inspired from Ryan's original project.
+[@holman](http://github.com/holman/) forked [Ryan Bates](http://github.com/ryanb)' excellent [dotfiles](http://github.com/ryanb/dotfiles) for a couple years before the weight of his changes and tweaks inspired him to finally roll his own. But Ryan's dotfiles were an easy way to get into bash customization, and then to jump ship to zsh a bit later. A decent amount of the code in these dotfiles stem or are inspired from Ryan's original project.
