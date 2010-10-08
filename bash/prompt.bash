@@ -76,9 +76,16 @@ need_push () {
 # Note: The branch will be colored also if it is dirty
 #
 get_prompt () {
-	# PS1 will only evaluate escape sequences once. This means that they cannot change.
-	# Thus to allow color changes we need to only change the color value.
-	
+  # PS1 will only evaluate escape sequences once. This means that they cannot change.
+  # Thus to allow color changes we need to only change the color value.
+		
+  # Set TERM title first
+  if [[ "\u" == "mernaghw" ]]
+  then
+    nameTerminal "\$(git_prompt_info)\w" "\u@\h"
+  else
+    nameTerminal "\$(git_prompt_info)\w" "\h"
+  fi
   local OPEN_COLOR="\[\033["
   local CLOSE_COLOR="m\]"
 	local LIGHT_BLUE="${OPEN_COLOR}1;36${CLOSE_COLOR}"
@@ -88,3 +95,18 @@ get_prompt () {
 }
 
 PS1=$(get_prompt)
+
+###############################################################################
+# Set the TERM title
+###############################################################################
+function nameTerminal() {
+    [ "${TERM:0:5}"  = "xterm" ]   && local ansiNrTab=0
+    [ "$TERM"        = "rxvt" ]    && local ansiNrTab=61
+    [ "$TERM"        = "konsole" ] && local ansiNrTab=30 ansiNrWindow=0
+    [[ "$KONSOLE_DCOP" == *konsole* ]] && local ansiNrTab=30 ansiNrWindow=0
+        # Change tab title
+    [ $ansiNrTab ] && echo -n $'\e'"]$ansiNrTab;$1"$'\a'
+        # If terminal support separate window title, change window title as well
+    [ $ansiNrWindow -a "$2" ] && echo -n $'\e'"]$ansiNrWindow;$2"$'\a'
+} # nameTerminal()
+
