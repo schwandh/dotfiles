@@ -11,7 +11,7 @@
   unstage = reset HEAD --
   graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
 [color]
-    ui = auto
+  ui = auto
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -25,11 +25,6 @@
   added = yellow
   changed = green
   untracked = cyan
-[user]
-	name = Will Mernagh
-	email = TODO
-[github]
-	user = wmernagh
 [core]
 	excludesfile = ~/.gitignore
     editor = vim
@@ -37,5 +32,11 @@
 	whitespace = nowarn
 [http]
 	sslverify = false
-	proxy = http://proxy-vf.global.lmco.com:80
+    #proxy = http://proxy-vf.global.lmco.com:80
 	postBuffer = 524288000
+[user]
+	name = Will Mernagh
+	email = 
+[github]
+	user = wmernagh
+	token = 
