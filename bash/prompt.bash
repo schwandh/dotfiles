@@ -96,9 +96,14 @@ get_prompt () {
   # Set TERM title first
   if [[ "\u" == "mernaghw" ]]
   then
-    nameTerminal "\$(git_prompt_info)\w" "\u@\h"
-  else
     nameTerminal "\$(git_prompt_info)\w" "\h"
+  else
+    if [[ "\u" == "wmernagh" ]]
+    then
+      nameTerminal "\$(git_prompt_info)\w" "\h"
+    else
+      nameTerminal "\$(git_prompt_info)\w" "\u@\h"
+    fi
   fi
   local OPEN_COLOR="\[\033["
   local CLOSE_COLOR="m\]"

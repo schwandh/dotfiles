@@ -59,6 +59,19 @@ _rake()  # autocomplete for rake
 }
 complete -F _rake rake
 
+_ssh() # autocomplete for ssh 
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts="hercules olympus owls-head lmis1 burl1 burl2 burl3 burl4 loon linux.eecs.tufts.edu sun.eecs.tufts.edu"
+
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    return 0
+}
+complete -F _ssh ssh
+
 # credit: http://nparikh.org/notes/zshrc.txt
 # Usage: smartextract <file>
 # Description: extracts archived files / mounts disk images
